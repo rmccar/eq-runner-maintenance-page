@@ -1,2 +1,2 @@
-# eq-maintenance-page
-Repo for EQ maintenance page 
+# eq-runner-maintenance-page
+Repo for EQ Questionnaire runner maintenance page 
