@@ -5,7 +5,7 @@ image_resource:
     repository: ubuntu
 
 inputs:
-  - name: eq-runner-maintenance-page-release
+  - name: maintenance-page-release
 
 outputs:
   - name: gcs-bucket-maintenance-page-artifact
