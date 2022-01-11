@@ -1,0 +1,16 @@
+platform: linux
+
+inputs:
+  - name: eq-runner-maintenance-page-release
+
+outputs:
+  - name: gcs-bucket-maintenance-page-artifact
+
+run:
+  path: sh
+  args:
+    - -exc
+    - |
+      apt-get update && apt-get install -y --allow-unauthenticated zip
+      cd maintenance-page-release    
+      tar -xzf source.tar.gz -C maintenance-page-release --strip-components=1
