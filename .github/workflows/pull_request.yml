@@ -10,9 +10,9 @@ jobs:
   docker-push:
     runs-on: ubuntu-22.04
     steps:
+      - uses: 'actions/checkout@v4'
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
-        uses: 'actions/checkout@v4'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
           workload_identity_provider: 'projects/rich-gar/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
