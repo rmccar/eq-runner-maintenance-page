@@ -13,7 +13,7 @@ While the `service.html` maintenance page can be deployed directly to a backend 
 docker build -t runner-maintenance-page .
 ```
 
-## Run container locallyfsddsf
+## Run container locally
 ```
 docker run -it --rm -d -p 5000:5000 --name runner-maintenance-page runner-maintenance-page
 ```
