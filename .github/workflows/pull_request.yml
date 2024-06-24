@@ -15,7 +15,8 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
-          workload_identity_provider: 'projects/rich-gar/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GAR_SERVICE_ACCOUNT }}
       - name: Set Tag and SHA
         run: |
           CLEAN_TAG=$(echo "${{ github.event.pull_request.head.ref }}" | tr / -)
@@ -23,10 +24,10 @@ jobs:
           echo "SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
       - name: Build
         run: >
-          docker build -t europe-west2-docker.pkg.dev/rich-gar/docker-images/eq-runner-maintenance-page:$TAG .
+          docker build -t ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-runner-maintenance-page:$TAG .
       - name: Push to GAR
         run: |
-          docker login -u _json_key --password-stdin https://europe-west2-docker.pkg.dev
-          gcloud auth configure-docker europe-west2-docker.pkg.dev
+          docker login -u _json_key --password-stdin https://${{ secrets.GAR_LOCATION }}
+          gcloud auth configure-docker ${{ secrets.GAR_LOCATION }}
           echo "Pushing to GAR with tag $TAG"
-          docker push europe-west2-docker.pkg.dev/rich-gar/docker-images/eq-runner-maintenance-page:$TAG
+          docker push ${{ secrets.GAR_LOCATION }}/${{ secrets.GAR_PROJECT_ID }}/docker-images/eq-runner-maintenance-page:$TAG
