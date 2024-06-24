@@ -16,7 +16,6 @@ jobs:
         uses: 'google-github-actions/auth@v0.4.0'
         with:
           workload_identity_provider: 'projects/rich-gar/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-      - uses: actions/checkout@v3
       - name: Set Tag and SHA
         run: |
           CLEAN_TAG=$(echo "${{ github.event.pull_request.head.ref }}" | tr / -)
