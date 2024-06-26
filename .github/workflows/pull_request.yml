@@ -19,7 +19,6 @@ jobs:
           project_id: ${{ secrets.GAR_PROJECT_ID }}
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GAR_SERVICE_ACCOUNT }}
-          token_format: "access_token"
       - name: Set Tag and SHA
         run: |
           CLEAN_TAG=$(echo "${{ github.event.pull_request.head.ref }}" | tr / -)
